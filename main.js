@@ -108,8 +108,21 @@ const Tree = (arr) => {
     }
     return minV;
   } 
-  
-  return { root, print, insert, del }
+
+  const find = (value) => {
+    let node = root;
+    while(node) {
+      if (value === node.data || node.data === null) {
+        return node;
+      } else if (value < node.data) {
+        node = node.left
+      } else {
+        node = node.right
+      }
+    }
+  }
+
+  return { root, print, insert, del, find }
 }
 
 function buildTree(arr, start, end) {
