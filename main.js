@@ -50,7 +50,7 @@ const Tree = (arr) => {
   const sortedArr = mergeSort(arr);
   const noDuplicateArr = [...new Set(sortedArr)];
 
-  root = buildTree(noDuplicateArr, 0, noDuplicateArr.length);
+  root = buildTree(noDuplicateArr, 0, noDuplicateArr.length - 1);
 
   const print = () => prettyPrint(root);
 
