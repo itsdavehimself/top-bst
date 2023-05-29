@@ -108,8 +108,8 @@ const Tree = (arr) => {
     }
     return minV;
   } 
-
-  return { root, print, insert, del, minValue }
+  
+  return { root, print, insert, del }
 }
 
 function buildTree(arr, start, end) {
