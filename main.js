@@ -72,7 +72,44 @@ const Tree = (arr) => {
     }
   }
 
-  return { root, print, insert }
+  const del = (value) => {
+    root = deleteNode(root, value)
+  }
+
+  const deleteNode = (node, value) => {
+    if (node === null) {
+      return node
+    }
+
+    if (value < node.data) {
+      node.left = deleteNode(node.left, value)
+    } else if (value > node.data) {
+      node.right = deleteNode(node.right, value)
+    } else {
+      if(!node.left && !node.right) {
+        return null
+      }
+      if(!node.left) {
+        return node.right;
+      } else if (!node.right) {
+        return node.left;
+      }
+      node.data = minValue(node.right)
+      node.right = deleteNode(node.right, node.data);
+    }
+    return node
+  }
+
+  const minValue = (node) => {
+    let minV = node.data;
+    while (node.left !== null) {
+      minV = node.left.data;
+      root = node.left;
+    }
+    return minV;
+  } 
+
+  return { root, print, insert, del, minValue }
 }
 
 function buildTree(arr, start, end) {
@@ -99,3 +136,5 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
     prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
   }
 };
+
+const newTree = Tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324])
