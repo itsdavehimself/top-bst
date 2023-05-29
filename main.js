@@ -52,7 +52,25 @@ const Tree = (arr) => {
 
   root = buildTree(noDuplicateArr, 0, noDuplicateArr.length);
 
-  return { root }
+  const print = () => prettyPrint(root);
+
+  const insert = (value) => {
+    let node = root;
+    while(node.left || node.right) {
+      if (value < node.data) {
+        node = node.left;
+      } else {
+        node = node.right;
+      }
+    }
+    if (value < node.data) {
+      node.left = Node(value);
+    } else {
+      node.right = Node(value);
+    }
+  }
+
+  return { root, print, insert }
 }
 
 function buildTree(arr, start, end) {
