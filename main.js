@@ -57,7 +57,9 @@ const Tree = (arr) => {
   const insert = (value) => {
     let node = root;
     while(node.left || node.right) {
-      if (value < node.data) {
+      if (value === node.data) {
+        return
+      } else if (value < node.data) {
         node = node.left;
       } else {
         node = node.right;
