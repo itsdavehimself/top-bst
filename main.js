@@ -109,16 +109,14 @@ const Tree = (arr) => {
     return minV;
   } 
 
-  const find = (value) => {
-    let node = root;
-    while(node) {
-      if (value === node.data || node.data === null) {
-        return node;
-      } else if (value < node.data) {
-        node = node.left
-      } else {
-        node = node.right
-      }
+
+  const find = (root, value) => {
+    if (value === root.data || root.data === null) {
+      return root;
+    } else if (value < root.data) {
+      return findRec(root.left, value)
+    } else {
+      return findRec(root.right, value)
     }
   }
 
