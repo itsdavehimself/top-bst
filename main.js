@@ -109,18 +109,34 @@ const Tree = (arr) => {
     return minV;
   } 
 
-
-  const find = (root, value) => {
-    if (value === root.data || root.data === null) {
-      return root;
-    } else if (value < root.data) {
-      return findRec(root.left, value)
-    } else {
-      return findRec(root.right, value)
+  const find = (value) => {
+    let node = root;
+    while(node) {
+      if (value === node.data || node.data === null) {
+        return node;
+      } else if (value < node.data) {
+        node = node.left
+      } else {
+        node = node.right
+      }
     }
   }
 
-  return { root, print, insert, del, find }
+  const findRec = (root, value) => {
+    if (root.data === value || root.data === null) {
+      return root
+    }
+
+    if (value < root.data && root.left) {
+      return findRec(root.left, value);
+    } else if (value > root.data && root.right) {
+      return findRec(root.right, value);
+    } else {
+      return null
+    }
+   }
+
+  return { root, print, insert, del, find, findRec }
 }
 
 function buildTree(arr, start, end) {
