@@ -142,8 +142,12 @@ const Tree = (arr) => {
     q.push(root);
     while(q.length > 0) {
       let current = q[0];
-      let newNum = fn(current.data)
-      traversed.push(newNum);
+      if (!fn) {
+        traversed.push(current.data);
+      } else {
+        let newNum = fn(current.data)
+        traversed.push(newNum);
+      }
       if (current.left !== null) {
         q.push(current.left);
       }
