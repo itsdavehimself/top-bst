@@ -159,16 +159,17 @@ const Tree = (arr) => {
     return traversed
    }
 
-   const preOrder = (root, fn) => {
+   const preOrder = (root, fn, orderedArr = []) => {
     if (root === null) return;
     if (!fn) {
-      console.log(root.data);
+      orderedArr.push(root.data);
     } else {
       let newNum = fn(root.data)
-      console.log(newNum);
+      orderedArr.push(newNum);
     }
-    preOrder(root.left)
-    preOrder(root.right)
+    preOrder(root.left, fn, orderedArr)
+    preOrder(root.right, fn, orderedArr)
+    return orderedArr;
    }
 
    const inOrder = (root, fn, orderedArr = []) => {
@@ -184,16 +185,17 @@ const Tree = (arr) => {
     return orderedArr;
    }
 
-   const postOrder = (root, fn) => {
+   const postOrder = (root, fn, orderedArr = []) => {
     if (root === null) return;
-    postOrder(root.left, fn)
-    postOrder(root.right, fn)
+    postOrder(root.left, fn, orderedArr)
+    postOrder(root.right, fn, orderedArr)
     if (!fn) {
-      console.log(root.data);
+      orderedArr.push(root.data);
     } else {
       let newNum = fn(root.data)
-      console.log(newNum);
+      orderedArr.push(newNum);
     }
+    return orderedArr;
    }
 
   const findDepth = (root, node) => {
@@ -262,9 +264,13 @@ const Tree = (arr) => {
     return false;
   }
 
+  const rebalance = () => {
+    let inOrderArr = inOrder(root, undefined, []);
+    root = Tree(inOrderArr);
+    return root;
+  }
 
-
-  return { root, print, insert, del, find, findRec, levelOrder, preOrder, inOrder, postOrder, findHeight, findDepth, isBalanced }
+  return { root, print, insert, del, find, findRec, levelOrder, preOrder, inOrder, postOrder, findHeight, findDepth, isBalanced, rebalance }
 }
 
 function buildTree(arr, start, end) {
