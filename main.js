@@ -195,10 +195,6 @@ const Tree = (arr) => {
     }
    }
 
-  //  const height = (node) => {
-
-  //  }
-
   const findDepth = (root, node) => {
      if (root === null)
         return -1;
@@ -218,35 +214,54 @@ const Tree = (arr) => {
     return depth;
 }
 
-function heightCalc(root, node)
-{
+  const heightCalc = (root, node) => {
     if (root === null)
     {
         return -1;
     }
 
     let data = node.data
- 
+
     let leftHeight = heightCalc(root.left, node);
- 
+
     let rightHeight = heightCalc(root.right, node);
- 
+
     let ans = Math.max(leftHeight, rightHeight) + 1;
- 
+
     if (root.data === data)
         height = ans;
- 
-    return ans;
-}
- 
-function findHeight(root, node)
-{
-    heightCalc(root, node);
- 
-    return height;
-}
 
-  return { root, print, insert, del, find, findRec, levelOrder, preOrder, inOrder, postOrder, findHeight, findDepth }
+    return ans;
+  }
+  
+  const findHeight = (root, node) => {
+    heightCalc(root, node);
+
+    return height;
+  }
+
+  const height = (root) => {
+    if (root === null) {
+      return 0
+    }
+    return Math.max(height(root.left), height(root.right) + 1);
+  }
+
+  const isBalanced = (root) => {
+    if (root === null) {
+      return true;
+    }
+
+    let leftHeight = height(root.left)
+    let rightHeight = height(root.right)
+
+    if (Math.abs(leftHeight - rightHeight) <= 1 && isBalanced(root.left) === true && isBalanced(root.right) === true) {
+      return true;
+    }
+    return false;
+  }
+
+  return { root, print, insert, del, find, findRec, levelOrder, preOrder, inOrder, postOrder, findHeight, findDepth, isBalanced }
 }
 
 function buildTree(arr, start, end) {
