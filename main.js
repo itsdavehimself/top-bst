@@ -266,8 +266,8 @@ const Tree = (arr) => {
 
   const rebalance = () => {
     let inOrderArr = inOrder(root, undefined, []);
-    root = Tree(inOrderArr);
-    return root;
+    let newTree = Tree(inOrderArr);
+    return newTree;
   }
 
   return { root, print, insert, del, find, findRec, levelOrder, preOrder, inOrder, postOrder, findHeight, findDepth, isBalanced, rebalance }
@@ -298,11 +298,4 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
   }
 };
 
-const newTree = Tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324])
-newTree.insert(root, 212)
-newTree.insert(root, 111)
-newTree.insert(root, 198)
-newTree.insert(root, 345)
-newTree.insert(root, 888)
-newTree.insert(root, 537)
-newTree.insert(root, 345)
+
