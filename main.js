@@ -54,13 +54,13 @@ const Tree = (arr) => {
 
   const print = () => prettyPrint(root);
 
-  const insertRec = (root, value) => {
+  const insert = (root, value) => {
     if (value === root.data) return;
 
     if (value < root.data && root.left) {
-      root = insertRec(root.left, value);
+      root = insert(root.left, value);
     } else if (value > root.data && root.right) {
-      root = insertRec(root.right, value);
+      root = insert(root.right, value);
     } else {
       if (value < root.data) {
         root.left = Node(value);
@@ -134,7 +134,28 @@ const Tree = (arr) => {
     }
    }
 
-  return { root, print, insert, del, find, findRec }
+   const levelOrder = (fn) => {
+    if (root === null) return;
+
+    let q = [];
+    let traversed = []
+    q.push(root);
+    while(q.length > 0) {
+      let current = q[0];
+      let newNum = fn(current.data)
+      traversed.push(newNum);
+      if (current.left !== null) {
+        q.push(current.left);
+      }
+      if (current.right !== null) {
+        q.push(current.right);
+      }
+      q.shift();
+    }
+    return traversed
+   }
+
+  return { root, print, insert, del, find, findRec, levelOrder }
 }
 
 function buildTree(arr, start, end) {
