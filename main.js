@@ -171,16 +171,17 @@ const Tree = (arr) => {
     preOrder(root.right)
    }
 
-   const inOrder = (root, fn) => {
+   const inOrder = (root, fn, orderedArr = []) => {
     if (root === null) return;
-    inOrder(root.left, fn)
+    inOrder(root.left, fn, orderedArr)
     if (!fn) {
-      console.log(root.data);
+      orderedArr.push(root.data);
     } else {
       let newNum = fn(root.data)
-      console.log(newNum);
+      orderedArr.push(newNum);
     }
-    inOrder(root.right, fn)
+    inOrder(root.right, fn, orderedArr)
+    return orderedArr;
    }
 
    const postOrder = (root, fn) => {
@@ -261,6 +262,8 @@ const Tree = (arr) => {
     return false;
   }
 
+
+
   return { root, print, insert, del, find, findRec, levelOrder, preOrder, inOrder, postOrder, findHeight, findDepth, isBalanced }
 }
 
@@ -290,3 +293,10 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 };
 
 const newTree = Tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324])
+newTree.insert(root, 212)
+newTree.insert(root, 111)
+newTree.insert(root, 198)
+newTree.insert(root, 345)
+newTree.insert(root, 888)
+newTree.insert(root, 537)
+newTree.insert(root, 345)
