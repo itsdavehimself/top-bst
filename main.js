@@ -159,7 +159,43 @@ const Tree = (arr) => {
     return traversed
    }
 
-  return { root, print, insert, del, find, findRec, levelOrder }
+   const preOrder = (root, fn) => {
+    if (root === null) return;
+    if (!fn) {
+      console.log(root.data);
+    } else {
+      let newNum = fn(root.data)
+      console.log(newNum);
+    }
+    preOrder(root.left)
+    preOrder(root.right)
+   }
+
+   const inOrder = (root, fn) => {
+    if (root === null) return;
+    inOrder(root.left, fn)
+    if (!fn) {
+      console.log(root.data);
+    } else {
+      let newNum = fn(root.data)
+      console.log(newNum);
+    }
+    inOrder(root.right, fn)
+   }
+
+   const postOrder = (root, fn) => {
+    if (root === null) return;
+    postOrder(root.left, fn)
+    postOrder(root.right, fn)
+    if (!fn) {
+      console.log(root.data);
+    } else {
+      let newNum = fn(root.data)
+      console.log(newNum);
+    }
+   }
+
+  return { root, print, insert, del, find, findRec, levelOrder, preOrder, inOrder, postOrder }
 }
 
 function buildTree(arr, start, end) {
