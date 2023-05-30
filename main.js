@@ -195,9 +195,9 @@ const Tree = (arr) => {
     }
    }
 
-   const height = (node) => {
+  //  const height = (node) => {
 
-   }
+  //  }
 
   const findDepth = (root, node) => {
      if (root === null)
@@ -218,7 +218,35 @@ const Tree = (arr) => {
     return depth;
 }
 
-  return { root, print, insert, del, find, findRec, levelOrder, preOrder, inOrder, postOrder, findDepth }
+function heightCalc(root, node)
+{
+    if (root === null)
+    {
+        return -1;
+    }
+
+    let data = node.data
+ 
+    let leftHeight = heightCalc(root.left, node);
+ 
+    let rightHeight = heightCalc(root.right, node);
+ 
+    let ans = Math.max(leftHeight, rightHeight) + 1;
+ 
+    if (root.data === data)
+        height = ans;
+ 
+    return ans;
+}
+ 
+function findHeight(root, node)
+{
+    heightCalc(root, node);
+ 
+    return height;
+}
+
+  return { root, print, insert, del, find, findRec, levelOrder, preOrder, inOrder, postOrder, findHeight, findDepth }
 }
 
 function buildTree(arr, start, end) {
