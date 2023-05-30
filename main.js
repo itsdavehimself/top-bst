@@ -54,26 +54,20 @@ const Tree = (arr) => {
 
   const print = () => prettyPrint(root);
 
-  const insert = (value) => {
-    let node = root;
-    while(node.left || node.right) {
-      if (value === node.data) {
-        return
-      } else if (value < node.data) {
-        node = node.left;
+  const insertRec = (root, value) => {
+    if (value === root.data) return;
+
+    if (value < root.data && root.left) {
+      root = insertRec(root.left, value);
+    } else if (value > root.data && root.right) {
+      root = insertRec(root.right, value);
+    } else {
+      if (value < root.data) {
+        root.left = Node(value);
       } else {
-        node = node.right;
+        root.right = Node(value);
       }
     }
-    if (value < node.data) {
-      node.left = Node(value);
-    } else {
-      node.right = Node(value);
-    }
-  }
-
-  const insertRec = (root, value) => {
-
   }
 
   const del = (value) => {
@@ -136,7 +130,7 @@ const Tree = (arr) => {
     } else if (value > root.data && root.right) {
       return findRec(root.right, value);
     } else {
-      return 'Not found'
+      return;
     }
    }
 
