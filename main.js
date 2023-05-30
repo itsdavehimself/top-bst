@@ -72,6 +72,10 @@ const Tree = (arr) => {
     }
   }
 
+  const insertRec = (root, value) => {
+
+  }
+
   const del = (value) => {
     root = deleteNode(root, value)
   }
@@ -132,7 +136,7 @@ const Tree = (arr) => {
     } else if (value > root.data && root.right) {
       return findRec(root.right, value);
     } else {
-      return null
+      return 'Not found'
     }
    }
 
