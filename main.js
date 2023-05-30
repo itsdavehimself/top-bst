@@ -298,4 +298,36 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
   }
 };
 
+// Driver script
+
+function makeRandomArr(length) {
+  let arr = [];
+  for (let i = 0; i < length; i += 1) {
+    let num = Math.floor(Math.random() * 100)
+    arr.push(num);
+  }
+  return arr;
+}
+
+const randomArr = makeRandomArr(15)
+const newTree = Tree(randomArr)
+console.log(newTree.isBalanced(root))
+console.log(newTree.preOrder(root, undefined, []))
+console.log(newTree.inOrder(root, undefined, []))
+console.log(newTree.postOrder(root, undefined, []))
+newTree.print()
+newTree.insert(root, Math.floor(Math.random() * (999 - 101) + 101))
+newTree.insert(root, Math.floor(Math.random() * (999 - 101) + 101))
+newTree.insert(root, Math.floor(Math.random() * (999 - 101) + 101))
+newTree.insert(root, Math.floor(Math.random() * (999 - 101) + 101))
+newTree.insert(root, Math.floor(Math.random() * (999 - 101) + 101))
+newTree.insert(root, Math.floor(Math.random() * (999 - 101) + 101))
+newTree.insert(root, Math.floor(Math.random() * (999 - 101) + 101))
+console.log(newTree.isBalanced(root))
+newTree.rebalance()
+console.log(newTree.isBalanced(root))
+console.log(newTree.preOrder(root, undefined, []))
+console.log(newTree.inOrder(root, undefined, []))
+console.log(newTree.postOrder(root, undefined, []))
+newTree.print()
 
