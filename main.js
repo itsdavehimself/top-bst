@@ -195,7 +195,30 @@ const Tree = (arr) => {
     }
    }
 
-  return { root, print, insert, del, find, findRec, levelOrder, preOrder, inOrder, postOrder }
+   const height = (node) => {
+
+   }
+
+  const findDepth = (root, node) => {
+     if (root == null)
+        return -1;
+ 
+    let depth = -1;
+
+    let data = node.data
+ 
+    if ((root.data === data)||
+     
+        (depth = findDepth(root.left, node)) >= 0 ||
+         
+        (depth = findDepth(root.right, node)) >= 0)
+ 
+        return depth + 1;
+         
+    return depth;
+}
+
+  return { root, print, insert, del, find, findRec, levelOrder, preOrder, inOrder, postOrder, findDepth }
 }
 
 function buildTree(arr, start, end) {
