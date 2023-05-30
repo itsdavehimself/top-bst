@@ -200,7 +200,7 @@ const Tree = (arr) => {
    }
 
   const findDepth = (root, node) => {
-     if (root == null)
+     if (root === null)
         return -1;
  
     let depth = -1;
